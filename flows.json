@@ -1,0 +1,361 @@
+[
+    {
+        "id": "02e98e293256dc7c",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "9b9d7951f34c8d12",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "2f398c90183b1dce",
+        "type": "function",
+        "z": "02e98e293256dc7c",
+        "name": "function 1",
+        "func": "var dateNow = new Date();\nvar timeAsString = dateNow.toLocaleTimeString();\n\nmsg.payload = msg.payload + ' A hora é ' + timeAsString + '.';\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 260,
+        "wires": [
+            [
+                "43d6c77b50a951b4"
+            ]
+        ]
+    },
+    {
+        "id": "43d6c77b50a951b4",
+        "type": "debug",
+        "z": "02e98e293256dc7c",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "e46428adacb169cb",
+        "type": "inject",
+        "z": "02e98e293256dc7c",
+        "name": "Hello World!",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 250,
+        "y": 260,
+        "wires": [
+            [
+                "2f398c90183b1dce"
+            ]
+        ]
+    },
+    {
+        "id": "4768d366b877edea",
+        "type": "inject",
+        "z": "02e98e293256dc7c",
+        "name": "Hello World",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 250,
+        "y": 360,
+        "wires": [
+            [
+                "84baa1e6c956d753"
+            ]
+        ]
+    },
+    {
+        "id": "84baa1e6c956d753",
+        "type": "function",
+        "z": "02e98e293256dc7c",
+        "name": "function 2",
+        "func": "var cont = context.get('contador')||0;\ncont += 1;\ncontext.set('contador', cont);\nmsg.payload = cont;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 360,
+        "wires": [
+            [
+                "a380d0579e2d9051"
+            ]
+        ]
+    },
+    {
+        "id": "a380d0579e2d9051",
+        "type": "debug",
+        "z": "02e98e293256dc7c",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 800,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "71d2eb204cea1899",
+        "type": "inject",
+        "z": "02e98e293256dc7c",
+        "name": "",
+        "props": [
+            {
+                "p": "teste",
+                "v": "10",
+                "vt": "str"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 230,
+        "y": 480,
+        "wires": [
+            [
+                "9ac86ae60776ab57"
+            ]
+        ]
+    },
+    {
+        "id": "9ac86ae60776ab57",
+        "type": "function",
+        "z": "02e98e293256dc7c",
+        "name": "function 3",
+        "func": "let number = msg.teste\nfor (let index = 0; index < number; index++){\n    const element = index;\n    node.send({'teste':element});\n}\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 480,
+        "wires": [
+            [
+                "7a6e6473ca5ea779"
+            ]
+        ]
+    },
+    {
+        "id": "7a6e6473ca5ea779",
+        "type": "debug",
+        "z": "02e98e293256dc7c",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "teste",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "96643eef6495f648",
+        "type": "inject",
+        "z": "02e98e293256dc7c",
+        "name": "",
+        "props": [
+            {
+                "p": "teste",
+                "v": "6",
+                "vt": "num"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 210,
+        "y": 700,
+        "wires": [
+            [
+                "c8dfb3c5c37ed21d"
+            ]
+        ]
+    },
+    {
+        "id": "c8dfb3c5c37ed21d",
+        "type": "function",
+        "z": "02e98e293256dc7c",
+        "name": "function 5",
+        "func": "var number = msg.teste\n\n// if(number % 2 === 0){\n//     msg.payload = true;\n//     return msg;\n// }\n// else {\n//     msg.payload = false;\n//     return msg;\n// }\n\nmsg.payload = number\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 700,
+        "wires": [
+            [
+                "31256bd0d36cfc67"
+            ]
+        ]
+    },
+    {
+        "id": "31256bd0d36cfc67",
+        "type": "switch",
+        "z": "02e98e293256dc7c",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "5",
+                "vt": "str"
+            },
+            {
+                "t": "lt",
+                "v": "4",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 630,
+        "y": 700,
+        "wires": [
+            [
+                "cc4e4a0d2c077e74"
+            ],
+            [
+                "258a1517c77dcbed"
+            ]
+        ]
+    },
+    {
+        "id": "cc4e4a0d2c077e74",
+        "type": "debug",
+        "z": "02e98e293256dc7c",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "258a1517c77dcbed",
+        "type": "debug",
+        "z": "02e98e293256dc7c",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "1cf2e9136c0f686b",
+        "type": "http in",
+        "z": "9b9d7951f34c8d12",
+        "name": "BOT",
+        "url": "https://api.au-syd.assistant.watson.cloud.ibm.com/instances/f0e91075-1bcf-43d6-bd0b-08f825ed41ad",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 350,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f174cb1553623cab",
+        "type": "function",
+        "z": "9b9d7951f34c8d12",
+        "name": "Prepara Mensagem",
+        "func": "msg.params = {\n    \"session_id\" : msg.payload.session_id !== 'undefined' ? msg.payload.session_id: \"\"\n};\n\nmsg.payload = msg.payload.mensagem;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 540,
+        "wires": [
+            []
+        ]
+    }
+]
