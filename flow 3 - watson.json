@@ -1,0 +1,165 @@
+[
+    {
+        "id": "90c2eb4b34b792d7",
+        "type": "tab",
+        "label": "Flow 3",
+        "disabled": true,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "2df0900465a442ca",
+        "type": "telegram receiver",
+        "z": "90c2eb4b34b792d7",
+        "name": "BotTeste.docx",
+        "bot": "fe160f313364f2af",
+        "saveDataDir": "",
+        "filterCommands": false,
+        "x": 130,
+        "y": 300,
+        "wires": [
+            [
+                "37953af2a34d5b40",
+                "3970b8f83a49aca6"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "6ad243273c7f331e",
+        "type": "telegram sender",
+        "z": "90c2eb4b34b792d7",
+        "name": "",
+        "bot": "fe160f313364f2af",
+        "haserroroutput": false,
+        "outputs": 1,
+        "x": 1010,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "517e25ad003d4c4d",
+        "type": "watson-assistant-v2",
+        "z": "90c2eb4b34b792d7",
+        "name": "",
+        "service-endpoint": "https://api.au-syd.assistant.watson.cloud.ibm.com/instances/f0e91075-1bcf-43d6-bd0b-08f825ed41ad",
+        "assistant_id": "fa533e2e-3c15-4e03-b383-6a7bebf2e136",
+        "debug": false,
+        "restart": false,
+        "return_context": true,
+        "alternate_intents": false,
+        "multisession": true,
+        "timeout": "",
+        "optout-learning": false,
+        "persist-session-id": false,
+        "x": 590,
+        "y": 300,
+        "wires": [
+            [
+                "67b06313d076614f",
+                "d082ac9cd91a6502"
+            ]
+        ]
+    },
+    {
+        "id": "37953af2a34d5b40",
+        "type": "function",
+        "z": "90c2eb4b34b792d7",
+        "name": "Prepara Mensagem Watson",
+        "func": "msg.params = {\n    \"session_id\":msg.payload.session_id !== 'undefined' ? msg.payload.session_id:\"\"\n};\n\nmsg.chatId = msg.payload.chatId;\nmsg.payload = msg.payload.content;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 300,
+        "wires": [
+            [
+                "517e25ad003d4c4d"
+            ]
+        ]
+    },
+    {
+        "id": "67b06313d076614f",
+        "type": "function",
+        "z": "90c2eb4b34b792d7",
+        "name": "function 5",
+        "func": "msg.payload = {\n    chatId : msg.chatId,\n    type : \"message\",\n    content : msg.payload.output.generic[0].text\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 800,
+        "y": 400,
+        "wires": [
+            [
+                "6ad243273c7f331e"
+            ]
+        ]
+    },
+    {
+        "id": "3970b8f83a49aca6",
+        "type": "debug",
+        "z": "90c2eb4b34b792d7",
+        "name": "Entrada no Telegram",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 360,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "d082ac9cd91a6502",
+        "type": "debug",
+        "z": "90c2eb4b34b792d7",
+        "name": "Resposta para o Telegram",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 840,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "fe160f313364f2af",
+        "type": "telegram bot",
+        "botname": "BotTeste.docx",
+        "usernames": "",
+        "chatids": "",
+        "baseapiurl": "",
+        "updatemode": "polling",
+        "pollinterval": "300",
+        "usesocks": false,
+        "sockshost": "",
+        "socksprotocol": "socks5",
+        "socksport": "6667",
+        "socksusername": "anonymous",
+        "sockspassword": "",
+        "bothost": "",
+        "botpath": "",
+        "localbotport": "8443",
+        "publicbotport": "8443",
+        "privatekey": "",
+        "certificate": "",
+        "useselfsignedcertificate": false,
+        "sslterminated": false,
+        "verboselogging": false
+    }
+]
