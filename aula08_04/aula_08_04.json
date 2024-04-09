@@ -1,0 +1,22 @@
+[
+    {
+        "id": "67b06313d076614f",
+        "type": "function",
+        "z": "90c2eb4b34b792d7",
+        "name": "function 5",
+        "func": "msg.payload = {\n    chatId : msg.chatId,\n    type : \"message\",\n    content : msg.payload.output.generic[0].text\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 800,
+        "y": 400,
+        "wires": [
+            [
+                "6ad243273c7f331e"
+            ]
+        ]
+    }
+]
